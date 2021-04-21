@@ -3,7 +3,7 @@
         <!--home-->
         <div v-if="isLogin">
             <app-navbar />
-
+            <app-add-post :currentUser = "currentUser" />
             <main class="w-full flex justify-center">
                 <section class="w-8/12 flex justify-center m-2">
                     <!--left side-->
@@ -439,10 +439,12 @@
 
 <script>
 import AppNavbar from "../components/appNavbar.vue";
+import AppAddPost from "../components/appAddPost.vue"
+
 import { mapState } from "vuex";
 
 export default {
-    components : {AppNavbar},
+    components : {AppNavbar, AppAddPost},
     data() {
         return {
             username : "",

@@ -114,7 +114,6 @@ export default {
             }).then(res => res.json())
                 .then(() => {
                   this.isRegisted = true;
-                  this.$store.dispatch("getUserData")
                 })
 
         }

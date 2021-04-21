@@ -1,32 +1,13 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
-const passport = require('passport')
 
 const app = express()
 
-const userinfo = []
-
-const initializePassport = require("./passport-config")
-initializePassport(passport,
-    username => {
-        registerinfo.getAll().then(user => {
-            user.find(data => data.username === username)
-        })
-    },
-    password => {
-        registerinfo.getAll().then(user => {
-            user.find(data => data.username === password)
-        })
-    },
-    id => {
-        registerinfo.getAll().then(user => {
-            user.find(data => data.id === id)
-        })
-    }
-)
 
 const registerinfo = require("./db/register")
+const postInfo = require("./db/post")
+
 
 app.use(morgan('tiny'))
 app.use(cors())
@@ -39,8 +20,10 @@ app.get('/register', function (req, res) {
     })
 })
 
-app.get('/posts/:userId', function (req, res) {
-    res.send(req.params)
+app.get('/posts', function (req, res) {
+    postInfo.getAll().then(postInfo => {
+        res.json(postInfo)
+    })
 })
 
 app.post('/register', function (req,res) {
@@ -48,7 +31,17 @@ app.post('/register', function (req,res) {
 
     registerinfo.create(req.body).then(registerinfo => {
         res.json(registerinfo)
-        userinfo.push(req.body)
+    }).catch(err => {
+        res.status(500)
+        res.json(err)
+    })
+})
+
+app.post('/posts', function (req, res) {
+    console.log(req.body)
+
+    postInfo.createPost(req.body).then(postInfo => {
+        res.json(postInfo)
     }).catch(err => {
         res.status(500)
         res.json(err)
