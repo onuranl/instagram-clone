@@ -381,7 +381,6 @@
                 </section>
             </main>
         </div>
-
         <!--login-->
         <main class="w-full h-screen flex justify-center" v-if="!isLogin">
             <div class="h-full w-4/5 flex justify-center items-center">
@@ -440,72 +439,44 @@
 
 <script>
 import AppNavbar from "../components/appNavbar.vue";
+import { mapState } from "vuex";
 
 export default {
     components : {AppNavbar},
     data() {
         return {
-            data : [],
             username : "",
             password : "",
-            isLogin : false,
             alert : false,
-            currentUser: [
-                {
-                    _id : "",
-                    username : "",
-                    password : ""
-                }
-            ]
         }
     },
-    created() {
-        fetch('http://localhost:1234/register')
-        .then(res => res.json())
-        .then(res => this.data = res)
-
-        if(window.localStorage.getItem("id") !== null) {
-            this.currentUser[0]._id = window.localStorage.getItem("id")
-            this.currentUser[0].username = window.localStorage.getItem("username")
-            this.currentUser[0].password = window.localStorage.getItem("password")
-        }
-
-        if(this.currentUser[0]._id) {
-            this.isLogin = true
-        }
-
-        if(this.currentUser[0]._id == "") {
-            this.currentUser.splice(0,1)
-        }
+    computed: {
+        ...mapState([
+            'userData',
+            'currentUser',
+            'isLogin'
+        ]),
     },
     methods: {
         logIn() {
-            for(let i = 0; i < this.data.length; i++) {
-                if (this.data[i].username == this.username && this.data[i].password == this.password) {
-                    this.currentUser.push(this.data[i])
-                    this.isLogin = true
+            for(let i = 0; i < this.userData.length; i++) {
+                if (this.userData[i].username == this.username && this.userData[i].password == this.password) {
+                    this.$store.commit("updateCurrentUser", this.userData[i])
+                    this.$store.commit("updateIsLogin", true)
                     break;
                 } else {
-                    this.isLogin = false
+                    this.$store.commit("updateIsLogin", false)
                 }
             }
             if(this.isLogin) {
-                window.localStorage.setItem("id",this.currentUser[0]._id)
-                window.localStorage.setItem("username",this.currentUser[0].username)
-                window.localStorage.setItem("password",this.currentUser[0].password)
+                window.localStorage.setItem("_id", this.currentUser._id)
+                window.localStorage.setItem("username", this.currentUser.username)
+                window.localStorage.setItem("password", this.currentUser.password)
             }
-
             if(!this.isLogin) {
                 this.alert = true
             }
         },
-        logOut() {
-            window.localStorage.removeItem("id")
-            window.localStorage.removeItem("username")
-            window.localStorage.removeItem("password")
-            this.isLogin = false
-            this.currentUser.splice(0,3)
-        }
-    }
+    },
 }
 </script>

@@ -61,7 +61,7 @@
                         </button>
                     </div>
                     <div v-if="button" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                        <nuxt-link :to="`/${currentUser[0].username}`"> <a  class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a> </nuxt-link>
+                        <nuxt-link :to="`/${currentUser.username}`"> <a  class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a> </nuxt-link>
                         <nuxt-link to="/" > <button @click="logOut" > <a  class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Sign out</a> </button> </nuxt-link>
                     </div>
                 </div>
@@ -72,33 +72,29 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
     export default {
         data() {
             return {
                 button : false,
-                currentUser: [
-                {
-                    _id : "",
-                    username : "",
-                    password : ""
-                }]
             }
         },
-        created() {
-            if(window.localStorage.getItem("id") !== null) {
-            this.currentUser[0]._id = window.localStorage.getItem("id")
-            this.currentUser[0].username = window.localStorage.getItem("username")
-            this.currentUser[0].password = window.localStorage.getItem("password")
-        }
+        computed: {
+        ...mapState([
+            'currentUser',
+            "isLogin"
+            ]),
         },
         methods : {
             click() {
                 this.button = !this.button
             },
             logOut() {
-            window.localStorage.removeItem("id")
+            window.localStorage.removeItem("_id")
             window.localStorage.removeItem("username")
             window.localStorage.removeItem("password")
+            this.$store.commit("updateIsLogin", false)
             }
         }
     }

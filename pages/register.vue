@@ -40,7 +40,7 @@
                                 </fieldset>
                             </form>
                             <div class="bg-red-100 text-red-700 px-4 py-3 relative flex justify-center" v-if="isTaken" role="alert">
-                                <strong class="font-bold">Hatalı kullanıcı adı veya şifre !</strong>
+                                <strong class="font-bold">Alınmış kullanıcı adı !</strong>
                             </div>
                             <div class="bg-green-100 text-green-700 px-4 py-3 relative flex justify-center" v-if="isRegisted" role="alert">
                                 <strong class="font-bold">Kayıt başarılı !</strong>
@@ -49,7 +49,7 @@
                         <!--other-->
                         <div class="w-3/5 h-16 border border-indigo-600 flex justify-center items-center">
                             <div> <p>Hesabın var mı ?</p> </div>
-                            <nuxt-link to="/"> <p class="text-blue-600 ml-2"> Giriş Yap </p>  </nuxt-link>
+                            <a href="/"> <p class="text-blue-600 ml-2"> Giriş Yap </p>  </a>
                         </div>
                         <div class="w-3/5 mt-4">
                             <div class="w-full flex justify-center">
@@ -78,7 +78,6 @@ export default {
 
   data() {
     return {
-      data : [],
       isTaken : false,
       isRegisted : false,
       logininfo : {
@@ -87,6 +86,8 @@ export default {
       }
     }
   },
+  created() {
+  },
   computed: {
         ...mapState([
             'userData'
@@ -94,8 +95,8 @@ export default {
     },
   methods : {
     register() {
-        for (var i = 0 ; i < this.data.length ; i++) {
-            if (this.data[i].username === this.logininfo.username) {
+        for (var i = 0 ; i < this.userData.length ; i++) {
+            if (this.userData[i].username === this.logininfo.username) {
                 this.isTaken = true
                 break;
             } else {
@@ -113,7 +114,9 @@ export default {
             }).then(res => res.json())
                 .then(() => {
                   this.isRegisted = true;
+                  this.$store.dispatch("getUserData")
                 })
+
         }
     }
   },

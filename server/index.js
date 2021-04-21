@@ -33,15 +33,14 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-
-app.get('/', function (req, res) {
-  res.send('pale')
-})
-
 app.get('/register', function (req, res) {
     registerinfo.getAll().then(registerinfo => {
         res.json(registerinfo)
     })
+})
+
+app.get('/posts/:userId', function (req, res) {
+    res.send(req.params)
 })
 
 app.post('/register', function (req,res) {

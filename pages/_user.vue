@@ -78,11 +78,9 @@ export default {
     components : {AppNavbar},
     computed: {
         ...mapState([
-            'userData'
+            'userData',
+            'currentUser'
         ]),
     },
-    created() {
-        this.$store.dispatch("getUserData")
-    }
 }
 </script>
