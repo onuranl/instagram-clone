@@ -3,7 +3,6 @@
         <!--home-->
         <div v-if="isLogin">
             <app-navbar />
-            <app-add-post :currentUser = "currentUser" />
             <main class="w-full flex justify-center">
                 <section class="w-8/12 flex justify-center m-2">
                     <!--left side-->

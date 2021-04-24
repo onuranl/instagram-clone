@@ -22,7 +22,7 @@
                         </div>
                         <!--editprofile-->
                         <div class="border border-black rounded-md p-1 w-24 flex justify-center">
-                            <button>
+                            <button @click="addPost">
                                 Edit Profile
                             </button>
                         </div>
@@ -54,7 +54,7 @@
                     </a>
                 </div>
                 <!--posts section-->
-                <div class="w-full flex items-center">
+                <div v-if="!hasPosts" class="w-full flex items-center">
                     <div class="w-96">
                         <img src="https://www.instagram.com/static/images/mediaUpsell.jpg/6efc710a1d5a.jpg" alt="">
                     </div>
@@ -63,24 +63,39 @@
                         </h2>
                     </div>
                 </div>
+                <app-post-image-cart v-if="hasPosts" />
             </div>
         </section>
+        <app-add-post v-if="isPosting" :currentUser="currentUser" />
     </main>
     </div>
 </template>
 
 <script>
 import AppNavbar from "../components/appNavbar.vue";
+import AppPostImageCart from '~/components/appPostImageCart.vue';
+import AppAddPost from '~/components/appAddPost.vue';
 import { mapState } from "vuex";
 
 
 export default {
-    components : {AppNavbar},
+    components : {AppNavbar, AppPostImageCart, AppAddPost},
+    data() {
+        return {
+            hasPosts : Boolean,
+        }
+    },
     computed: {
         ...mapState([
             'userData',
-            'currentUser'
+            'currentUser',
+            'isPosting'
         ]),
     },
+    methods : {
+        addPost() {
+            this.$store.commit('updateIsPosting', true)
+        }
+    }
 }
 </script>

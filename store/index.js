@@ -8,6 +8,7 @@ export const state = () => ({
         }
     ],
     isLogin : false,
+    isPosting : false
 });
 
 export const mutations = {
@@ -19,6 +20,9 @@ export const mutations = {
     },
     updateIsLogin: (state, data) => {
         state.isLogin = data
+    },
+    updateIsPosting: (state, data) => {
+        state.isPosting = data
     }
 };
 
