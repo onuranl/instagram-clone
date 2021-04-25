@@ -18,7 +18,7 @@
                     <div class="h-12 w-full flex items-center space-x-6 space-y-2">
                         <!--username-->
                         <div class="">
-                            <p class="text-2xl text-gray-500">onur123</p>
+                            <p class="text-2xl text-gray-500">{{currentUser.username}}</p>
                         </div>
                         <!--editprofile-->
                         <div class="border border-black rounded-md p-1 w-24 flex justify-center">
@@ -82,15 +82,24 @@ export default {
     components : {AppNavbar, AppPostImageCart, AppAddPost},
     data() {
         return {
+            currentUserPosts : [],
             hasPosts : Boolean,
         }
     },
     computed: {
         ...mapState([
             'userData',
+            'postData',
             'currentUser',
             'isPosting'
         ]),
+    },
+    created  () {
+        for (let i = 0; i < this.postData.length; i++) {
+            if (this.postData[i].username == this.currentUser.username) {
+                this.currentUserPosts.push(this.postData[i])
+            }
+        }
     },
     methods : {
         addPost() {

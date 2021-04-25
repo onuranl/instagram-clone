@@ -1,19 +1,36 @@
 <template>
-    <div class="w-full flex items-center space-x-8 mb-8">
-        <div class="w-96">
-            <img src="https://www.instagram.com/static/images/mediaUpsell.jpg/6efc710a1d5a.jpg" alt="">
-        </div>
-        <div class="w-96 ">
-            <img src="https://www.instagram.com/static/images/mediaUpsell.jpg/6efc710a1d5a.jpg" alt="">
-        </div>
-        <div class="w-96">
-            <img src="https://www.instagram.com/static/images/mediaUpsell.jpg/6efc710a1d5a.jpg" alt="">
+    <div class="w-full flex justify-center">
+        <div class="w-full flex flex-wrap items-center">
+            <div class="w-72 ml-8 mt-8" v-for="postimage in currentUserPosts" :key="postimage">
+                <img class="w-72 h-72" :src="`${postimage.imageURL}`" alt="">
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-export default {
+import { mapState } from "vuex";
 
+
+export default {
+    data() {
+        return {
+            currentUserPosts : []
+        }
+    },
+
+    computed : {
+        ...mapState([
+                'postData',
+                'currentUser',
+            ]),
+    },
+    created () {
+        for (let i = 0; i < this.postData.length; i++) {
+            if (this.postData[i].username === this.currentUser.username) {
+                this.currentUserPosts.push(this.postData[i])
+            }
+        }
+    },
 }
 </script>

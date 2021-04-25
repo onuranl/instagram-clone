@@ -58,14 +58,14 @@ export default {
                 headers: {
                     'content-type': 'application/json'
                 }
-            }).then(res => res.json())
-                .then(() => {
-                    this.hasPosted = true
-                })
-
-            if(!this.notPosted) {
-                this.notPosted = true
-            }
+            })
+            .then(res => res.json())
+            .then(() => {
+                this.hasPosted = true
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            })
         },
         close() {
             this.$store.commit('updateIsPosting', false)

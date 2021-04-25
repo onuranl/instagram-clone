@@ -17,25 +17,7 @@
                                         <!--user-avatar-->
                                         <img alt="in profil resmi" class="w-12 h-12" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="https://instagram.fkgf2-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fkgf2-1.fna.fbcdn.net&amp;_nc_ohc=4Nn_SAq9gJsAX_mW4yx&amp;edm=AP9-OL4AAAAA&amp;ccb=7-4&amp;oh=67f2385a8c0f0a73db7078652fa6c792&amp;oe=6098DA8F&amp;_nc_sid=737f18&amp;ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-4">
                                         <!--username-->
-                                        <p class="text-xs mt-2">onur123</p>
-                                    </button>
-                                </div>
-                                <div class="bg-white h-full w-20 flex justify-center ">
-                                    <button class="mb-3" type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
-                                        <span class="sr-only">Open user story</span>
-                                        <!--user-avatar-->
-                                        <img alt="in profil resmi" class="w-12 h-12" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="https://instagram.fkgf2-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fkgf2-1.fna.fbcdn.net&amp;_nc_ohc=4Nn_SAq9gJsAX_mW4yx&amp;edm=AP9-OL4AAAAA&amp;ccb=7-4&amp;oh=67f2385a8c0f0a73db7078652fa6c792&amp;oe=6098DA8F&amp;_nc_sid=737f18&amp;ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-4">
-                                        <!--username-->
-                                        <p class="text-xs mt-2">onur123</p>
-                                    </button>
-                                </div>
-                                <div class="bg-white h-full w-20 flex justify-center ">
-                                    <button class="mb-3" type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
-                                        <span class="sr-only">Open user story</span>
-                                        <!--user-avatar-->
-                                        <img alt="in profil resmi" class="w-12 h-12" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="https://instagram.fkgf2-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fkgf2-1.fna.fbcdn.net&amp;_nc_ohc=4Nn_SAq9gJsAX_mW4yx&amp;edm=AP9-OL4AAAAA&amp;ccb=7-4&amp;oh=67f2385a8c0f0a73db7078652fa6c792&amp;oe=6098DA8F&amp;_nc_sid=737f18&amp;ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-4">
-                                        <!--username-->
-                                        <p class="text-xs mt-2">onur123</p>
+                                        <p class="text-xs mt-2"> {{currentUser.username}} </p>
                                     </button>
                                 </div>
                             </div>
@@ -279,7 +261,7 @@
                                 <div class="w-20">
                                     <!--username-->
                                     <button>
-                                        <p> onur123 </p>
+                                        <p> {{currentUser.username}} </p>
                                     </button>
                                 </div>
                                 <!--switch-user-->

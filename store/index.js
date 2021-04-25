@@ -1,5 +1,6 @@
 export const state = () => ({
     userData: [],
+    postData : [],
     currentUser : [
         {
             _id : "",
@@ -7,6 +8,7 @@ export const state = () => ({
             password : ""
         }
     ],
+    // currentUserPosts : [],
     isLogin : false,
     isPosting : false
 });
@@ -15,9 +17,15 @@ export const mutations = {
     updateUserData: (state, data) => {
         state.userData = data
     },
+    updatePostData: (state, data) => {
+        state.postData = data
+    },
     updateCurrentUser: (state, data) => {
         state.currentUser = data
     },
+    // updateCurrentUserPosts: (state, data) => {
+    //     state.currentUserPosts = data
+    // },
     updateIsLogin: (state, data) => {
         state.isLogin = data
     },
@@ -43,8 +51,23 @@ export const actions = {
         console.log(err);
       }
     },
-    getCurrentUser({
+    async getPostData({
         state,
+        commit
+    }) {
+        if (state.postData.length) return;
+
+        try {
+            await fetch('http://localhost:1234/posts')
+                .then(res => res.json())
+                .then(data => {
+                    commit("updatePostData", data)
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    getCurrentUser({
         commit
     }) {
 
@@ -67,7 +90,21 @@ export const actions = {
                 commit("updateIsLogin", true)
             }
         }
-    }
+    },
+    // getCurrentUserPosts({
+    //     state,
+    //     commit
+    // }) {
+    //     var currentUserPosts = []
+
+    //     for (let i = 0; i < state.postData.length; i++) {
+    //         if (state.postData[i].username == state.currentUser.username) {
+    //             currentUserPosts.push(state.postData[i])
+    //         }
+    //     }
+
+    //     commit("updateCurrentUserPosts", currentUserPosts)
+    // }
 };
 
 export default {
