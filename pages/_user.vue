@@ -94,13 +94,6 @@ export default {
             'isPosting'
         ]),
     },
-    created  () {
-        for (let i = 0; i < this.postData.length; i++) {
-            if (this.postData[i].username == this.currentUser.username) {
-                this.currentUserPosts.push(this.postData[i])
-            }
-        }
-    },
     methods : {
         addPost() {
             this.$store.commit('updateIsPosting', true)

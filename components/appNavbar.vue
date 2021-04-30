@@ -11,9 +11,9 @@
                 </router-link>
             </div>
             <!--search bar-->
-            <div class="text-gray-600 ">
-                <input class="border-2 border-gray-500 rounded-md pl-2 " type="search" placeholder="Search">
-                <button>
+            <div class="text-gray-600 ml-24">
+                <input @click="search" v-model="searchInput" class="border-2 border-gray-500 rounded-md pl-2 " type="search" placeholder="Search">
+                <button >
                     <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
                         viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
@@ -71,9 +71,84 @@
                 </div>
             </div>
         </div>
+        <!--searchingresults-->
+        <div v-if="isSearching" class="w-full absolute flex justify-center right-2">
+            <div class="w-96 h-96 bg-white">
+                <div class="h-5 w-full flex justify-between p-2">
+                    <div>
+                        <p>Arama Sonuçları</p>
+                    </div>
+                    <button @click="search">
+                        <div class="w-5 justify-self-end">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 511.995 511.995" style="enable-background:new 0 0 511.995 511.995;" xml:space="preserve">
+                                <g>
+                                    <g>
+                                        <path d="M437.126,74.939c-99.826-99.826-262.307-99.826-362.133,0C26.637,123.314,0,187.617,0,256.005    s26.637,132.691,74.993,181.047c49.923,49.923,115.495,74.874,181.066,74.874s131.144-24.951,181.066-74.874    C536.951,337.226,536.951,174.784,437.126,74.939z M409.08,409.006c-84.375,84.375-221.667,84.375-306.042,0    c-40.858-40.858-63.37-95.204-63.37-153.001s22.512-112.143,63.37-153.021c84.375-84.375,221.667-84.355,306.042,0    C493.435,187.359,493.435,324.651,409.08,409.006z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                    <g>
+                                        <path d="M341.525,310.827l-56.151-56.071l56.151-56.071c7.735-7.735,7.735-20.29,0.02-28.046    c-7.755-7.775-20.31-7.755-28.065-0.02l-56.19,56.111l-56.19-56.111c-7.755-7.735-20.31-7.755-28.065,0.02    c-7.735,7.755-7.735,20.31,0.02,28.046l56.151,56.071l-56.151,56.071c-7.755,7.735-7.755,20.29-0.02,28.046    c3.868,3.887,8.965,5.811,14.043,5.811s10.155-1.944,14.023-5.792l56.19-56.111l56.19,56.111    c3.868,3.868,8.945,5.792,14.023,5.792c5.078,0,10.175-1.944,14.043-5.811C349.28,331.117,349.28,318.562,341.525,310.827z"/>
+                                    </g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                            </svg>
+                        </div>
+                    </button>
+                </div>
+                <div class="h-72 mt-4">
+                    <div class="h-12 flex items-center" v-for="user in filteredUser" :key="user">
+                        <div class="w-20 flex justify-center ">
+                            <button class="" type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
+                                <span class="sr-only">Open user page</span>
+                                <!--user-avatar-->
+                                <img alt="in profil resmi" class="w-10 h-10" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="https://instagram.fkgf2-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fkgf2-1.fna.fbcdn.net&amp;_nc_ohc=4Nn_SAq9gJsAX_mW4yx&amp;edm=AP9-OL4AAAAA&amp;ccb=7-4&amp;oh=67f2385a8c0f0a73db7078652fa6c792&amp;oe=6098DA8F&amp;_nc_sid=737f18&amp;ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-4">
+                            </button>
+                        </div>
+                        <div class="w-32">
+                            <!--username-->
+                            <button>
+                                <p> {{user.username}} </p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </nav> <hr />
     </div>
 </template>
+
+
 
 <script>
 import { mapState } from "vuex";
@@ -82,13 +157,21 @@ import { mapState } from "vuex";
         data() {
             return {
                 button : false,
+                isSearching : false,
+                searchInput : '',
             }
         },
         computed: {
         ...mapState([
             'currentUser',
-            "isLogin"
+            'isLogin',
+            'userData'
             ]),
+            filteredUser() {
+                return this.userData.filter(data => {
+                    return data.username.toLowerCase().includes(this.searchInput.toLowerCase())
+                })
+            }
         },
         methods : {
             click() {
@@ -99,7 +182,10 @@ import { mapState } from "vuex";
             window.localStorage.removeItem("username")
             window.localStorage.removeItem("password")
             this.$store.commit("updateIsLogin", false)
+            },
+            search() {
+                this.isSearching = !this.isSearching
             }
-        }
+        },
     }
 </script>
