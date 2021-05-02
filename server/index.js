@@ -7,6 +7,8 @@ const app = express()
 
 const registerinfo = require("./db/register")
 const postInfo = require("./db/post")
+const addImage = require("./db/addImage")
+
 
 
 app.use(morgan('tiny'))
@@ -31,6 +33,17 @@ app.post('/register', function (req,res) {
 
     registerinfo.create(req.body).then(registerinfo => {
         res.json(registerinfo)
+    }).catch(err => {
+        res.status(500)
+        res.json(err)
+    })
+})
+
+app.post('/addimage', function (req, res) {
+    console.log(req.body)
+
+    addImage.addImage(req.body).then(userimage => {
+        res.json(userimage)
     }).catch(err => {
         res.status(500)
         res.json(err)

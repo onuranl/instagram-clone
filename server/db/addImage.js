@@ -11,8 +11,6 @@ const schema = Joi.object({
         .min(3)
         .max(30)
         .required(),
-    password: Joi.string()
-        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
     imageURL: Joi.string().uri({
         scheme: [
             /https?/
@@ -22,25 +20,16 @@ const schema = Joi.object({
 
 const register = db.get('register')
 
-function getAll() {
-    return register.find()
-}
 
-function create(info) {
-    const userinfo = schema.validate(info)
+function addImage(info) {
+    const userImage = schema.validate(info)
 
-    if(!info.imageURL) {
-        info.imageURL = ""
-    }
-
-    if(userinfo.error == null){
-        return register.insert(info)
+    if(userImage.error == null){
+        return register.update({username : info.username}, { $set: {imageURL : info.imageURL}})
     } else {
         return Promise.reject(result.error)
     }
+
 }
 
-
-
-
-module.exports = {create, getAll}
+module.exports = {addImage}
