@@ -5,10 +5,10 @@
                 <!--user-->
                 <div class="w-full mt-3 flex p-5 border-b-2 border-fuchsia-600">
                     <!--user-avatar-->
-                    <div class="w-3/5 flex justify-center">
+                    <div class="w-3/5 flex justify-center rounded-full">
                         <button class="" type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open user menu</span>
-                            <img alt="in profil resmi" class="h-40" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="https://instagram.fkgf2-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fkgf2-1.fna.fbcdn.net&amp;_nc_ohc=4Nn_SAq9gJsAX_mW4yx&amp;edm=AP9-OL4AAAAA&amp;ccb=7-4&amp;oh=67f2385a8c0f0a73db7078652fa6c792&amp;oe=6098DA8F&amp;_nc_sid=737f18&amp;ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-4">
+                            <img alt="in profil resmi" class="h-40 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false" :src="`${userImageURL}`">
                         </button>
                     </div>
                     <!--user-info-->
@@ -62,8 +62,8 @@
                         </a>
                     </div>
                     <!--posts section-->
-                    <app-none-post-image-cart v-if="!hasPosts" />
-                    <app-post-image-cart v-if="hasPosts" />
+                    <!-- <app-none-post-image-cart v-if="!hasPosts" /> -->
+                    <app-post-image-cart  />
                 </div>
             </section>
             <app-add-post v-if="isPosting" :currentUser="currentUser" />
@@ -84,11 +84,19 @@ export default {
         return {
             hasPosts : Boolean,
             isEditing : Boolean,
-            username : ""
+            username : "",
+            userImageURL : ""
         }
     },
     created() {
         this.username = this.$route.params.user
+
+        for(let i = 0; i < this.userData.length; i++) {
+            if (this.userData[i].username === this.username) {
+                this.userImageURL = this.userData[i].imageURL
+                break;
+            }
+        }
 
         if(this.username == this.currentUser.username) {
             this.isEditing = true
