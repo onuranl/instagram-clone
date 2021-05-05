@@ -2,6 +2,10 @@
 
 I'm currently work on this project
 
+Nuxt
+Nodejs, mongodb,
+TailwindCSS
+
 ## Build Setup
 
 ```bash
