@@ -2,7 +2,7 @@
 
 I'm currently work on this project
 
-Nuxt
+Nuxt,
 Nodejs, mongodb,
 TailwindCSS
 
