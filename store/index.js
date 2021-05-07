@@ -10,7 +10,8 @@ export const state = () => ({
     ],
     // currentUserPosts : [],
     isLogin : false,
-    isPosting : false
+    isPosting : false,
+    isChangingImage: false
 });
 
 export const mutations = {
@@ -31,6 +32,9 @@ export const mutations = {
     },
     updateIsPosting: (state, data) => {
         state.isPosting = data
+    },
+    uptadeIsChangingImage: (state, data) => {
+        state.isChangingImage = data
     }
 };
 

@@ -6,7 +6,7 @@
                 <div class="w-full mt-3 flex p-5 border-b-2 border-fuchsia-600">
                     <!--user-avatar-->
                     <div class="w-3/5 flex justify-center rounded-full">
-                        <button class="" type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
+                        <button @click="changingImage" class="" type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open user menu</span>
                             <img alt="in profil resmi" class="h-40 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false" :src="`${userImageURL}`">
                         </button>
@@ -67,6 +67,7 @@
                 </div>
             </section>
             <app-add-post v-if="isPosting" :currentUser="currentUser" />
+            <app-change-image v-if="isChangingImage" :currentUser="currentUser" />
         </main>
     </div>
 </template>
@@ -76,10 +77,11 @@ import AppPostImageCart from '~/components/appPostImageCart.vue';
 import AppNonePostImageCart from '~/components/appNonePostImageCart.vue';
 import AppAddPost from '~/components/appAddPost.vue';
 import { mapState } from "vuex";
+import AppChangeImage from './appChangeImage.vue';
 
 
 export default {
-    components : {AppPostImageCart, AppAddPost, AppNonePostImageCart},
+    components : {AppPostImageCart, AppAddPost, AppNonePostImageCart, AppChangeImage},
     data() {
         return {
             hasPosts : Boolean,
@@ -117,12 +119,16 @@ export default {
             'userData',
             'postData',
             'currentUser',
-            'isPosting'
+            'isPosting',
+            'isChangingImage'
         ]),
     },
     methods : {
         addPost() {
             this.$store.commit('updateIsPosting', true)
+        },
+        changingImage() {
+            this.$store.commit('uptadeIsChangingImage', true)
         }
     }
 }
