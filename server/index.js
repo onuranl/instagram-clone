@@ -8,6 +8,7 @@ const app = express()
 const registerinfo = require("./db/register")
 const postInfo = require("./db/post")
 const addImage = require("./db/addImage")
+const follow = require("./db/follow")
 
 
 
@@ -15,13 +16,6 @@ app.use(morgan('tiny'))
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-})
 
 app.get('/register', function (req, res) {
     registerinfo.getAll().then(registerinfo => {
@@ -68,10 +62,20 @@ app.post('/posts', function (req, res) {
     })
 })
 
+app.post('/follow', function (req, res) {
+    console.log(req.body)
+
+    follow.followUser(req.body).then(followinfo => {
+        res.json(followinfo)
+    }).catch(err => {
+        res.status(500)
+        res.json(err)
+    })
+})
+
 
 const port = process.env.PORT || 1234
 
 app.listen(port, () => {
     console.log(`Listening on ${port}`)
 })
-

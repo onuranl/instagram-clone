@@ -8,7 +8,6 @@ export const state = () => ({
             password : ""
         }
     ],
-    // currentUserPosts : [],
     isLogin : false,
     isPosting : false,
     isChangingImage: false
@@ -24,9 +23,6 @@ export const mutations = {
     updateCurrentUser: (state, data) => {
         state.currentUser = data
     },
-    // updateCurrentUserPosts: (state, data) => {
-    //     state.currentUserPosts = data
-    // },
     updateIsLogin: (state, data) => {
         state.isLogin = data
     },
@@ -41,9 +37,11 @@ export const mutations = {
 export const actions = {
     async getUserData({
       state,
-      commit
+      commit,
+      dispatch
     }) {
       if (state.userData.length) return;
+
 
       try {
         await fetch('http://localhost:1234/register')
@@ -57,7 +55,7 @@ export const actions = {
     },
     async getPostData({
         state,
-        commit
+        commit,
     }) {
         if (state.postData.length) return;
 
@@ -95,20 +93,6 @@ export const actions = {
             }
         }
     },
-    // getCurrentUserPosts({
-    //     state,
-    //     commit
-    // }) {
-    //     var currentUserPosts = []
-
-    //     for (let i = 0; i < state.postData.length; i++) {
-    //         if (state.postData[i].username == state.currentUser.username) {
-    //             currentUserPosts.push(state.postData[i])
-    //         }
-    //     }
-
-    //     commit("updateCurrentUserPosts", currentUserPosts)
-    // }
 };
 
 export default {

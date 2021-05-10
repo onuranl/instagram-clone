@@ -6,9 +6,6 @@
 </template>
 
 <script>
-import AppNavbar from "../components/appNavbar.vue";
-import AppAddPost from "../components/appAddPost.vue"
-
 import { mapState } from "vuex";
 import AppHomePage from '~/components/appHomePage.vue';
 import AppLoginPage from '~/components/appLoginPage.vue';

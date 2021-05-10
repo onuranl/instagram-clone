@@ -35,11 +35,6 @@ export default {
             haschanged : false
         }
     },
-    computed : {
-        ...mapState([
-            'isChangingImage',
-        ])
-    },
     props : {
         currentUser : {
 

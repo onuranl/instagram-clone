@@ -164,11 +164,11 @@ import { mapState } from "vuex";
             }
         },
         computed: {
-        ...mapState([
-            'currentUser',
-            'isLogin',
-            'userData'
-            ]),
+            ...mapState([
+                'currentUser',
+                'isLogin',
+                'userData'
+                ]),
             filteredUser() {
                 return this.userData.filter(data => {
                     return data.username.toLowerCase().includes(this.searchInput.toLowerCase())
