@@ -21,11 +21,27 @@
             </div>
             <!--follow button-->
             <div v-if="!isEditing" >
-                <button>
-                    <div class="border border-gray-500 rounded-md p-1 w-24 flex justify-center  bg-blue-500">
-                        <p class="text-white"> Follow </p>
-                    </div>
-                </button>
+                <div v-if="!isFollowing">
+                    <button @click="addFollower">
+                        <div class="border border-gray-500 rounded-md p-1 w-24 flex justify-center  bg-blue-500">
+                            <p class="text-white"> Follow </p>
+                        </div>
+                    </button>
+                </div>
+                <div v-if="isFollowing" class="flex justify-center space-x-2">
+                    <button >
+                        <div class="border border-gray-500 rounded-md p-1 w-24 flex justify-center bg-white">
+                            <p class="text-black"> Message </p>
+                        </div>
+                    </button>
+                    <button >
+                        <div class="border border-gray-500 rounded-md p-1 w-8 flex justify-center bg-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                    </button>
+                </div>
             </div>
         </div>
         <!--bottom side-->
@@ -43,10 +59,13 @@
 <script>
 import { mapState} from "vuex";
 
+
+const API_URL = "http://localhost:1234/follow"
+
 export default {
     data() {
         return {
-            isEditing : Boolean
+            isEditing : Boolean,
         }
     },
     created() {
@@ -63,12 +82,42 @@ export default {
     computed : {
         ...mapState([
             'currentUser',
+            'userData'
         ]),
+        isFollowing() {
+            var result = Boolean
+            for(let i = 0; i < this.userData.length; i++) {
+                if (this.userData[i].username == this.currentUser.username) {
+                    for(let j = 0; j < this.userData[i].following.length; j++) {
+                        if (this.userData[i].following[j] == this.username) {
+                            result = true
+                            break;
+                        } else {
+                            result = false
+                        }
+                    }
+                }
+            }
+            return result
+        }
     },
     methods : {
         addPost() {
             this.$store.commit('updateIsPosting', true)
         },
+        addFollower() {
+            fetch(API_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    currentUser : this.currentUser.username,
+                    followedUser : this.$route.params.user
+            }),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            }).then(res => res.json())
+            .then(() => location.reload())
+        }
     },
 }
 </script>
