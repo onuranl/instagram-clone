@@ -29,6 +29,7 @@ function createPost(info) {
     const postInfo = schema.validate(info)
 
     if(postInfo.error == null){
+        info.created = new Date();
         return posts.insert(info)
     } else {
         return Promise.reject(result.error)

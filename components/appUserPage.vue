@@ -2,7 +2,7 @@
     <div class="w-full flex justify-center">
         <section class="w-8/12">
             <!--user-->
-            <div class="w-full mt-3 flex p-5 border-b-2 border-fuchsia-600">
+            <div class="w-full mt-3 flex justify-center p-5 border-b-2 border-fuchsia-600 ml-7">
                 <app-user-avatar :filteredUserInfo="filteredUserInfo" :username="username" />
                 <app-user-info :filteredUserInfo="filteredUserInfo" :username="username" />
             </div>
@@ -64,9 +64,10 @@ export default {
             'isChangingImage',
         ]),
         filteredUserPost() {
-            return this.postData.filter(data => {
+            const userPosts = this.postData.filter(data => {
                 return data.username.toLowerCase().includes(this.username.toLowerCase())
             })
+            return userPosts.reverse()
         },
         filteredUserInfo() {
             return this.userData.filter(data => {

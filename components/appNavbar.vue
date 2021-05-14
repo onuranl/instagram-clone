@@ -58,10 +58,10 @@
                         </button>
                     </div>
                     <div class="ml-3 relative">
-                        <div>
+                        <div v-for="userinfo in filteredUserInfo" :key="userinfo.id">
                             <button @click="click" type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img alt="in profil resmi" class="w-6 h-6 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="https://instagram.fkgf2-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fkgf2-1.fna.fbcdn.net&amp;_nc_ohc=4Nn_SAq9gJsAX_mW4yx&amp;edm=AP9-OL4AAAAA&amp;ccb=7-4&amp;oh=67f2385a8c0f0a73db7078652fa6c792&amp;oe=6098DA8F&amp;_nc_sid=737f18&amp;ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-4">
+                                <img :alt="`${currentUser.username}'in profil resmi`" class="w-6 h-6 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false" :src="`${userinfo.imageURL}`">
                             </button>
                         </div>
                         <div v-if="button" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
@@ -131,7 +131,7 @@
                                 <button class="" type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
                                     <span class="sr-only">Open user page</span>
                                     <!--user-avatar-->
-                                    <img alt="in profil resmi" class="w-10 h-10" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="https://instagram.fkgf2-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fkgf2-1.fna.fbcdn.net&amp;_nc_ohc=4Nn_SAq9gJsAX_mW4yx&amp;edm=AP9-OL4AAAAA&amp;ccb=7-4&amp;oh=67f2385a8c0f0a73db7078652fa6c792&amp;oe=6098DA8F&amp;_nc_sid=737f18&amp;ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-4">
+                                    <img :alt="`${user.username}'in profil resmi`" class="w-10 h-10 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false" :src="`${user.imageURL}`">
                                 </button>
                             </div>
                             <div class="w-32">
@@ -163,17 +163,20 @@ import { mapState } from "vuex";
                 searchInput : '',
             }
         },
+        props: {
+            filteredUserInfo : {}
+        },
         computed: {
             ...mapState([
                 'currentUser',
                 'isLogin',
                 'userData'
-                ]),
+            ]),
             filteredUser() {
                 return this.userData.filter(data => {
                     return data.username.toLowerCase().includes(this.searchInput.toLowerCase())
                 })
-            }
+            },
         },
         methods : {
             click() {

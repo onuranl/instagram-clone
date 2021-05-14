@@ -40,7 +40,7 @@ function create(info) {
     }
 
     if(!info.imageURL) {
-        info.imageURL = "https://cdn130.picsart.com/318381621277201.jpg?type=webp&to=min&r=640"
+        info.imageURL = "https://cdn130.picsart.com/318381621277201.jpg"
     }
 
     if(userinfo.error == null){
