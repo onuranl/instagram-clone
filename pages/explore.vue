@@ -1,9 +1,9 @@
 <template>
     <div >
         <app-navbar :filteredUserInfo="filteredUserInfo" />
-        <div class="w-full h-screen flex justify-center ml-16">
-            <div class="w-2/3">
-                <div class="w-full flex flex-wrap items-center">
+        <div class="w-full h-screen flex justify-center">
+            <div class="w-full flex justify-center">
+                <div class="w-3/4 flex flex-wrap justify-center items-center">
                     <div class="w-72 ml-8 mt-8" v-for="postimage in postData" :key="postimage.url">
                         <img :src="`${postimage.imageURL}`" alt="">
                     </div>

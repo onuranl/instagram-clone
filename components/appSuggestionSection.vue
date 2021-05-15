@@ -6,9 +6,11 @@
                 <p class="font-semibold text-sm text-gray-500 m-2"> Suggestions For You</p>
             </div>
             <div class="w-1/2 flex justify-end">
-                <button>
-                    <p class="text-gray-900">See All</p>
-                </button>
+                <nuxt-link to="/suggested">
+                    <button>
+                        <p class="text-gray-900">See All</p>
+                    </button>
+                </nuxt-link>
             </div>
         </div>
         <!--users-->
@@ -52,13 +54,6 @@ export default {
         getUserData() {
             return this.userData.slice(0,5)
         },
-        filteredUserData() {
-            for (let i = 0; i < this.getUserData.length; i++) {
-                if (this.getUserData[i].username == this.currentUser.username) {
-                    return this.getUserData.splice(i, 1)
-                }
-            }
-        }
     }
 }
 </script>

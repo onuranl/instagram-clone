@@ -173,9 +173,12 @@ import { mapState } from "vuex";
                 'userData'
             ]),
             filteredUser() {
-                return this.userData.filter(data => {
-                    return data.username.toLowerCase().includes(this.searchInput.toLowerCase())
-                })
+                if(this.searchInput) {
+                    return this.userData.filter(data => {
+                        return data.username.toLowerCase().includes(this.searchInput.toLowerCase())
+                    })
+                }
+                return null
             },
         },
         methods : {
