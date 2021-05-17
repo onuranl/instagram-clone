@@ -49,8 +49,8 @@
             <!--postscount-->
             <div class="flex space-x-6" for="userInfo">
                 <p>0 post</p>
-                <a href=""> {{userInfo.followers.length}} followers</a>
-                <a href=""> {{userInfo.following.length}} following</a>
+                <button @click="checkFollowers" >  {{userInfo.followers.length}} followers </button>
+                <button @click="checkFolloweds" > {{userInfo.following.length}} following </button>
             </div>
         </div>
     </div>
@@ -117,6 +117,12 @@ export default {
                 }
             }).then(res => res.json())
             .then(() => location.reload())
+        },
+        checkFolloweds() {
+            this.$store.commit('updateCheckFolloweds', true)
+        },
+        checkFollowers() {
+            this.$store.commit('updateCheckFollowers', true)
         }
     },
 }

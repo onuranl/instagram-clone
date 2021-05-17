@@ -10,7 +10,9 @@ export const state = () => ({
     ],
     isLogin : false,
     isPosting : false,
-    isChangingImage: false
+    isChangingImage: false,
+    checkFolloweds: false,
+    checkFollowers: false
 });
 
 export const mutations = {
@@ -29,8 +31,14 @@ export const mutations = {
     updateIsPosting: (state, data) => {
         state.isPosting = data
     },
-    uptadeIsChangingImage: (state, data) => {
+    updateIsChangingImage: (state, data) => {
         state.isChangingImage = data
+    },
+    updateCheckFolloweds: (state, data) => {
+        state.checkFolloweds = data
+    },
+    updateCheckFollowers: (state, data) => {
+        state.checkFollowers = data
     }
 };
 
@@ -38,7 +46,6 @@ export const actions = {
     async getUserData({
       state,
       commit,
-      dispatch
     }) {
       if (state.userData.length) return;
 

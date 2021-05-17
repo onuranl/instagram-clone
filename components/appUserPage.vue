@@ -22,6 +22,8 @@
         </section>
         <app-add-post v-if="isPosting" :currentUser="currentUser" />
         <app-change-image v-if="isChangingImage" :currentUser="currentUser" />
+        <app-following-section v-if="checkFolloweds" :filteredUserInfo="filteredUserInfo" />
+        <app-followers-section v-if="checkFollowers" :filteredUserInfo="filteredUserInfo" />
     </div>
 </template>
 
@@ -62,6 +64,8 @@ export default {
             'currentUser',
             'isPosting',
             'isChangingImage',
+            'checkFolloweds',
+            'checkFollowers'
         ]),
         filteredUserPost() {
             const userPosts = this.postData.filter(data => {

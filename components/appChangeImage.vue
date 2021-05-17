@@ -53,7 +53,7 @@ export default {
             .then(() => this.haschanged = true)
         },
         close() {
-            this.$store.commit('uptadeIsChangingImage', false)
+            this.$store.commit('updateIsChangingImage', false)
         }
     }
 }

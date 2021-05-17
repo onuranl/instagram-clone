@@ -33,7 +33,7 @@ export default {
     },
     methods : {
         changingImage() {
-            this.$store.commit('uptadeIsChangingImage', true)
+            this.$store.commit('updateIsChangingImage', true)
         }
     }
 }
