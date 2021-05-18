@@ -34,7 +34,7 @@
                             <p class="text-black"> Message </p>
                         </div>
                     </button>
-                    <button >
+                    <button @click="unFollow" >
                         <div class="border border-gray-500 rounded-md p-1 w-8 flex justify-center bg-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -60,7 +60,7 @@
 import { mapState} from "vuex";
 
 
-const API_URL = "http://localhost:1234/follow"
+const API_URL = "http://localhost:1234/"
 
 export default {
     data() {
@@ -106,11 +106,24 @@ export default {
             this.$store.commit('updateIsPosting', true)
         },
         addFollower() {
-            fetch(API_URL, {
+            fetch((API_URL + "follow"), {
                 method: 'POST',
                 body: JSON.stringify({
                     currentUser : this.currentUser.username,
                     followedUser : this.$route.params.user
+            }),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            }).then(res => res.json())
+            .then(() => location.reload())
+        },
+        unFollow() {
+            fetch((API_URL + "unfollow"), {
+                method: 'POST',
+                body: JSON.stringify({
+                    currentUser : this.currentUser.username,
+                    unfollowedUser : this.$route.params.user
             }),
                 headers: {
                     'content-type': 'application/json'

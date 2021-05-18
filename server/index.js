@@ -9,6 +9,8 @@ const registerinfo = require("./db/register")
 const postInfo = require("./db/post")
 const addImage = require("./db/addImage")
 const follow = require("./db/follow")
+const unfollow = require("./db/unfollow")
+
 
 
 
@@ -66,6 +68,17 @@ app.post('/follow', function (req, res) {
     console.log(req.body)
 
     follow.followUser(req.body).then(followinfo => {
+        res.json(followinfo)
+    }).catch(err => {
+        res.status(500)
+        res.json(err)
+    })
+})
+
+app.post('/unfollow', function (req, res) {
+    console.log(req.body)
+
+    unfollow.unfollowUser(req.body).then(followinfo => {
         res.json(followinfo)
     }).catch(err => {
         res.status(500)
