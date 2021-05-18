@@ -1,12 +1,13 @@
 <template>
     <div >
         <app-navbar :filteredUserInfo="filteredUserInfo" />
-        <div class="w-full h-screen flex justify-center">
-            <div class="w-full flex justify-center">
-                <div class="w-3/4 flex flex-wrap justify-center items-center">
-                    <div class="w-72 ml-8 mt-8" v-for="postimage in postData" :key="postimage.url">
-                        <img :src="`${postimage.imageURL}`" alt="">
-                    </div>
+        <div class="w-full flex justify-center">
+            <div class="grid grid-cols-3 gap-8 mt-8">
+                <div
+                v-for="postimage in postData"
+                :key="postimage.id">
+                    <img class="w-80 h-80"
+                    :src="`${postimage.imageURL}`">
                 </div>
             </div>
         </div>
@@ -14,13 +15,9 @@
 </template>
 
 <script>
-import AppNavbar from "../components/appNavbar.vue";
-
 import { mapState } from "vuex";
 
-
 export default {
-    components : {AppNavbar},
     computed : {
         ...mapState([
             'postData',

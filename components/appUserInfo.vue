@@ -7,7 +7,8 @@
                 <p class="text-2xl text-gray-500"> {{username}} </p>
             </div>
             <!--editprofile-->
-            <div v-if="isEditing" class="w-36 flex justify-between">
+            <div class="w-36 flex justify-between"
+            v-if="isEditing" >
                 <button @click="addPost">
                     <div class="border border-black rounded-md p-1 w-24 flex justify-center">
                         Add Post
@@ -45,9 +46,12 @@
             </div>
         </div>
         <!--bottom side-->
-        <div class="w-full h-12 mt-2" v-for="userInfo in filteredUserInfo" :key="userInfo.id">
+        <div class="w-full h-12 mt-2"
+        v-for="userInfo in filteredUserInfo"
+        :key="userInfo.id">
             <!--postscount-->
-            <div class="flex space-x-6" for="userInfo">
+            <div class="flex space-x-6"
+            for="userInfo">
                 <p>0 post</p>
                 <button @click="checkFollowers" >  {{userInfo.followers.length}} followers </button>
                 <button @click="checkFolloweds" > {{userInfo.following.length}} following </button>
@@ -58,7 +62,6 @@
 
 <script>
 import { mapState} from "vuex";
-
 
 const API_URL = "http://localhost:1234/"
 
@@ -140,7 +143,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

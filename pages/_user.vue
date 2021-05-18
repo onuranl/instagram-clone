@@ -6,13 +6,9 @@
 </template>
 
 <script>
-import AppNavbar from "../components/appNavbar.vue";
-import AppUserPage from '~/components/appUserPage.vue';
-
 import { mapState } from "vuex";
 
 export default {
-    components : {AppNavbar, AppUserPage},
     name: "user",
     computed: {
         ...mapState([

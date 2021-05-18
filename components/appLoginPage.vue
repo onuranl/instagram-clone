@@ -17,17 +17,20 @@
                         <form class="w-full h-36 flex justify-center mt-4 border-b-2 border-fuchsia-600" @submit.prevent="logIn">
                             <fieldset class="w-9/12 p-2 space-y-2" >
                                 <div class="bg-white w-full h-8 border-b-2 border-fuchsia-600 ">
-                                    <input v-model="username" class="m-1 w-full" type="text" placeholder="Kullanıcı adı">
+                                    <input class="m-1 w-full" type="text" placeholder="Kullanıcı adı"
+                                    v-model="username">
                                 </div>
                                 <div class="bg-white w-full h-8 border-b-2 border-fuchsia-600">
-                                    <input v-model="password" class="m-1 w-full" type="password" placeholder="Şifre">
+                                    <input class="m-1 w-full" type="password" placeholder="Şifre"
+                                    v-model="password">
                                 </div>
                                 <div class="bg-white w-full h-8 rounded-lg bg-blue-500 border-b-2 border-fuchsia-600">
                                     <button class="w-full h-full" type="submit"> <p class="text-white">Giriş Yap</p> </button>
                                 </div>
                             </fieldset>
                         </form>
-                        <div class="bg-red-100 text-red-700 px-4 py-3 relative flex justify-center" v-if="alert" role="alert">
+                        <div class="bg-red-100 text-red-700 px-4 py-3 relative flex justify-center" role="alert"
+                        v-if="alert">
                             <strong class="font-bold">Hatalı kullanıcı adı veya şifre !</strong>
                         </div>
                     </div>

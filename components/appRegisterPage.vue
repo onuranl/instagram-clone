@@ -28,10 +28,12 @@
                                 <fieldset class="w-9/12 p-2 space-y-2">
 
                                     <div class="bg-white w-full h-8 border-b-2 border-fuchsia-600 ">
-                                        <input v-model="logininfo.username" class="m-1 w-full" type="text" placeholder="Kullanıcı adı">
+                                        <input class="m-1 w-full" type="text" placeholder="Kullanıcı adı"
+                                        v-model="logininfo.username">
                                     </div>
                                     <div class="bg-white w-full h-8 border-b-2 border-fuchsia-600">
-                                        <input v-model="logininfo.password" class="m-1 w-full" type="password" placeholder="Şifre">
+                                        <input class="m-1 w-full" type="password" placeholder="Şifre"
+                                        v-model="logininfo.password">
                                     </div>
 
                                     <div class="bg-white w-full h-8 rounded-lg bg-blue-500 border-b-2 border-fuchsia-600">
@@ -39,10 +41,12 @@
                                     </div>
                                 </fieldset>
                             </form>
-                            <div class="bg-red-100 text-red-700 px-4 py-3 relative flex justify-center" v-if="isTaken" role="alert">
+                            <div class="bg-red-100 text-red-700 px-4 py-3 relative flex justify-center" role="alert"
+                            v-if="isTaken">
                                 <strong class="font-bold">Alınmış kullanıcı adı !</strong>
                             </div>
-                            <div class="bg-green-100 text-green-700 px-4 py-3 relative flex justify-center" v-if="isRegisted" role="alert">
+                            <div class="bg-green-100 text-green-700 px-4 py-3 relative flex justify-center" role="alert"
+                            v-if="isRegisted">
                                 <strong class="font-bold">Kayıt başarılı !</strong>
                             </div>
                         </div>
@@ -70,12 +74,11 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 const API_URL = 'http://localhost:1234/register'
-import { mapState } from "vuex";
 
 export default {
-
-
   data() {
     return {
       isTaken : false,
@@ -85,8 +88,6 @@ export default {
         password : "",
       }
     }
-  },
-  created() {
   },
   computed: {
         ...mapState([
@@ -113,9 +114,8 @@ export default {
                 }
             }).then(res => res.json())
                 .then(() => {
-                  this.isRegisted = true;
+                    this.isRegisted = true;
                 })
-
         }
     }
   },

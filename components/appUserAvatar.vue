@@ -1,8 +1,13 @@
 <template>
     <div class="w-3/5 flex justify-center rounded-full">
-        <button :disabled="isDisable" @click="changingImage"  type="button" id="user-menu" aria-expanded="false" aria-haspopup="true" v-for="userInfo in filteredUserInfo " :key="userInfo.id" >
+        <button type="button" id="user-menu" aria-expanded="false" aria-haspopup="true"
+        v-for="userInfo in filteredUserInfo"
+        :key="userInfo.id"
+        :disabled="isDisable"
+        @click="changingImage"   >
             <span class="sr-only">Open user menu</span>
-            <img alt="in profil resmi" class="h-40 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false" :src="`${userInfo.imageURL}`">
+            <img :alt="`${userInfo.username}'in profil resmi`" class="h-40 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false"
+            :src="`${userInfo.imageURL}`">
         </button>
     </div>
 </template>
@@ -11,9 +16,6 @@
 import { mapState} from "vuex";
 
 export default {
-    data() {
-        return {}
-    },
     props : {
         filteredUserInfo : {},
         username : ""
@@ -38,7 +40,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

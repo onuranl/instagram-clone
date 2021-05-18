@@ -1,18 +1,24 @@
 <template>
     <div>
         <div v-if="checkData">
-            <div class="mt-5 border border-gray-500 mb-12" v-for="posts in filteredPosts" :key="posts.name">
+            <div class="mt-5 border border-gray-300 mb-12"
+            v-for="posts in filteredPosts"
+            :key="posts.name">
                 <!--post-header-->
                 <div class="h-16 w-full p-3 flex  content-center">
                     <div class="w-1/3 flex justify-start">
+                    <nuxt-link :to="`/${posts.username}`">
                         <button type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open user page</span>
-                            <img alt="in profil resmi" class="w-8 h-8" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="https://instagram.fkgf2-1.fna.fbcdn.net/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fkgf2-1.fna.fbcdn.net&amp;_nc_ohc=4Nn_SAq9gJsAX_mW4yx&amp;edm=AP9-OL4AAAAA&amp;ccb=7-4&amp;oh=67f2385a8c0f0a73db7078652fa6c792&amp;oe=6098DA8F&amp;_nc_sid=737f18&amp;ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2-ccb7-4">
+                            <img alt="in profil resmi" class="w-8 h-8" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="https://cdn130.picsart.com/318381621277201.jpg">
                         </button>
-                        <button class="ml-5">
+                    </nuxt-link>
+                    <nuxt-link :to="`/${posts.username}`">
+                        <button class="ml-5 mt-1">
                             <span class="sr-only">Open user page</span>
                             <p> {{posts.username}} </p>
                         </button>
+                    </nuxt-link>
                     </div>
                     <div class="w-4/5 flex justify-end">
                         <button>
@@ -27,7 +33,8 @@
                 <!--image-->
                 <div class="h-2/3 w-full">
                     <div class="w-full h-full">
-                        <img class="w-full h-full" :src="`${posts.imageURL}`">
+                        <img class="w-full h-full"
+                        :src="`${posts.imageURL}`">
                     </div>
                 </div>
                 <!--comment-etc-section-->
@@ -106,13 +113,14 @@
                     <section class="h-10 p-2">
                         <div class="flex justify-between">
                             <input class="ml-2 w-full" type="text" placeholder="Yorum ekle...">
-                            <button class="" type="submit"> <p class="text-blue-500"> Paylaş </p> </button>
+                            <button type="submit"> <p class="text-blue-500"> Paylaş </p> </button>
                         </div>
                     </section>
                 </div>
             </div>
         </div>
-        <div class="mt-5 flex justify-center" v-if="!checkData">
+        <div class="mt-5 flex justify-center"
+        v-if="!checkData">
             Start making friends and enjoy it
         </div>
     </div>
@@ -134,7 +142,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

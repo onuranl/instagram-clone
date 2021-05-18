@@ -20,18 +20,10 @@
 </template>
 
 <script>
-import AppNavbar from "../components/appNavbar.vue";
-import AppStorySection from './appStorySection.vue';
-import AppPostSection from './appPostSection.vue';
-import AppUserSwitch from './appUserSwitch.vue';
-import AppSuggestionSection from './appSuggestionSection.vue';
-import AppFooter from './appFooter.vue';
-
 import { mapState } from "vuex";
 
 
 export default {
-    components : {AppNavbar, AppPostSection, AppStorySection, AppFooter, AppUserSwitch, AppSuggestionSection},
     computed: {
         ...mapState([
             'currentUser',

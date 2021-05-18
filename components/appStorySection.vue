@@ -1,5 +1,5 @@
 <template>
-    <div class="h-24 p-2 border border-gray-500">
+    <div class="h-24 p-2 border border-gray-300	">
         <div class="h-full p-1 flex justify-start">
             <!--user-->
             <div class="bg-white h-full w-20 flex justify-center ">

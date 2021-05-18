@@ -12,7 +12,9 @@
                 </div>
                 <!--search bar-->
                 <div class="text-gray-600 ml-24">
-                    <input @click="search" v-model="searchInput" class="border-2 border-gray-500 rounded-md pl-2 " type="search" placeholder="Search">
+                    <input class="border-2 border-gray-500 rounded-md pl-2 " type="search" placeholder="Search"
+                    @click="search"
+                    v-model="searchInput">
                     <button >
                         <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
@@ -58,13 +60,17 @@
                         </button>
                     </div>
                     <div class="ml-3 relative">
-                        <div v-for="userinfo in filteredUserInfo" :key="userinfo.id">
-                            <button @click="click" type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                        <div
+                        v-for="userinfo in filteredUserInfo"
+                        :key="userinfo.id">
+                            <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true"
+                            @click="click">
                                 <span class="sr-only">Open user menu</span>
                                 <img :alt="`${currentUser.username}'in profil resmi`" class="w-6 h-6 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false" :src="`${userinfo.imageURL}`">
                             </button>
                         </div>
-                        <div v-if="button" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                        <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+                        v-if="button">
                             <nuxt-link :to="`/${currentUser.username}`"> <a  class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a> </nuxt-link>
                             <nuxt-link to="/" > <button @click="logOut" > <a  class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Sign out</a> </button> </nuxt-link>
                         </div>
@@ -72,8 +78,9 @@
                 </div>
             </div>
             <!--searchingresults-->
-            <div v-if="isSearching" class="w-full absolute flex justify-center right-2">
-                <div class="w-96 h-96 bg-white">
+            <div class="w-full absolute flex justify-center right-2"
+            v-if="isSearching">
+                <div class="w-96 h-96 bg-white shadow-2xl rounded-md">
                     <div class="h-5 w-full flex justify-between p-2">
                         <div>
                             <p>Arama Sonuçları</p>
@@ -126,12 +133,15 @@
                         </button>
                     </div>
                     <div class="h-72 mt-4">
-                        <div class="h-12 flex items-center" v-for="user in filteredUser" :key="user.name">
+                        <div class="h-12 flex items-center"
+                        v-for="user in filteredUser"
+                        :key="user.name">
                             <div class="w-20 flex justify-center ">
                                 <button class="" type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
                                     <span class="sr-only">Open user page</span>
                                     <!--user-avatar-->
-                                    <img :alt="`${user.username}'in profil resmi`" class="w-10 h-10 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false" :src="`${user.imageURL}`">
+                                    <img :alt="`${user.username}'in profil resmi`" class="w-10 h-10 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false"
+                                    :src="`${user.imageURL}`">
                                 </button>
                             </div>
                             <div class="w-32">
@@ -155,45 +165,45 @@
 <script>
 import { mapState } from "vuex";
 
-    export default {
-        data() {
-            return {
-                button : false,
-                isSearching : false,
-                searchInput : '',
+export default {
+    data() {
+        return {
+            button : false,
+            isSearching : false,
+            searchInput : '',
+        }
+    },
+    props: {
+        filteredUserInfo : {}
+    },
+    computed: {
+        ...mapState([
+            'currentUser',
+            'isLogin',
+            'userData'
+        ]),
+        filteredUser() {
+            if(this.searchInput) {
+                return this.userData.filter(data => {
+                    return data.username.toLowerCase().includes(this.searchInput.toLowerCase())
+                })
             }
+            return null
         },
-        props: {
-            filteredUserInfo : {}
+    },
+    methods : {
+        click() {
+            this.button = !this.button
         },
-        computed: {
-            ...mapState([
-                'currentUser',
-                'isLogin',
-                'userData'
-            ]),
-            filteredUser() {
-                if(this.searchInput) {
-                    return this.userData.filter(data => {
-                        return data.username.toLowerCase().includes(this.searchInput.toLowerCase())
-                    })
-                }
-                return null
-            },
+        logOut() {
+        window.localStorage.removeItem("_id")
+        window.localStorage.removeItem("username")
+        window.localStorage.removeItem("password")
+        this.$store.commit("updateIsLogin", false)
         },
-        methods : {
-            click() {
-                this.button = !this.button
-            },
-            logOut() {
-            window.localStorage.removeItem("_id")
-            window.localStorage.removeItem("username")
-            window.localStorage.removeItem("password")
-            this.$store.commit("updateIsLogin", false)
-            },
-            search() {
-                this.isSearching = !this.isSearching
-            }
-        },
-    }
+        search() {
+            this.isSearching = !this.isSearching
+        }
+    },
+}
 </script>

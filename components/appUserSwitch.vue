@@ -1,13 +1,16 @@
 <template>
     <div class="h-20">
-        <div class="h-3/4 mt-2 flex items-center" v-for="userinfo in filteredUserInfo" :key="userinfo.id">
+        <div class="h-3/4 mt-2 flex items-center"
+        v-for="userinfo in filteredUserInfo"
+        :key="userinfo.id">
             <!--current-user-avatar-->
             <div class="h-full w-20 flex justify-center items-center" >
                 <nuxt-link :to="`${userinfo.username}`">
                     <button type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
                         <span class="sr-only">Open user page</span>
                         <!--user-avatar-->
-                        <img alt="in profil resmi" class="w-12 h-12 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false" :src="`${userinfo.imageURL}`">
+                        <img alt="in profil resmi" class="w-12 h-12 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false"
+                        :src="`${userinfo.imageURL}`">
                     </button>
                 </nuxt-link>
             </div>
@@ -37,7 +40,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
