@@ -1,6 +1,4 @@
-const monk = require('monk')
-const connectionString = 'localhost/register';
-const db = monk(connectionString)
+const db = require('./connection');
 
 
 const Joi = require('joi');

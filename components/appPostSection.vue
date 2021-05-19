@@ -107,7 +107,7 @@
                     </section>
                     <section class="h-6">
                         <button class="ml-4">
-                            <p class="text-xs text-gray-500">7 SAAT ÖNCE</p>
+                            <p class="text-xs text-gray-500"> {{posts.created}} </p>
                         </button>
                     </section> <hr />
                     <section class="h-10 p-2">

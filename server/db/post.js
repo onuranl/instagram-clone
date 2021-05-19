@@ -1,5 +1,5 @@
 const monk = require('monk')
-const connectionString = 'localhost/posts';
+const connectionString = process.env.PORT || 'localhost/posts';
 const db = monk(connectionString)
 
 const Joi = require('joi');

@@ -27,14 +27,18 @@
                         </div>
                         <div class="w-32">
                             <!--username-->
-                            <button>
-                                <p> {{users}} </p>
-                            </button>
+                            <a :href="`/${users}`">
+                                <button>
+                                    <p> {{users}} </p>
+                                </button>
+                            </a>
                         </div>
                         <div class="w-2/5 flex justify-end ">
-                            <button class="w-24 border border-gray-500">
-                                <p class="text-black"> Visit </p>
-                            </button>
+                            <a :href="`/${users}`">
+                                <button class="w-24 border border-gray-500">
+                                    <p class="text-black"> Visit </p>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>

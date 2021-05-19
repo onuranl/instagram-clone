@@ -88,7 +88,7 @@ export default {
             'userData'
         ]),
         isFollowing() {
-            var result = Boolean
+            var result
             for(let i = 0; i < this.userData.length; i++) {
                 if (this.userData[i].username == this.currentUser.username) {
                     for(let j = 0; j < this.userData[i].following.length; j++) {
