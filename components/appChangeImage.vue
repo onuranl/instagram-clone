@@ -23,7 +23,7 @@
 </template>
 
 <script>
-const API_URL = 'http://localhost:1234/addimage'
+const API_URL = 'https://instagram-clone-onuranl.herokuapp.com/addimage'
 
 export default {
     data() {

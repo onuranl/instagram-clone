@@ -26,7 +26,7 @@
 </template>
 
 <script>
-const API_URL = 'http://localhost:1234/posts'
+const API_URL = 'https://instagram-clone-onuranl.herokuapp.com/posts'
 
 import { mapState } from "vuex";
 

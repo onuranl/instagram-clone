@@ -63,7 +63,7 @@
 <script>
 import { mapState} from "vuex";
 
-const API_URL = "http://localhost:1234/"
+const API_URL = "https://instagram-clone-onuranl.herokuapp.com/"
 
 export default {
     data() {

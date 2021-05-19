@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="w-full flex justify-center"
+        <div class="w-full flex justify-center mb-4"
         v-if="currentUserHasPosts">
             <div class="grid grid-cols-3 gap-8">
                 <div
                 v-for="postimage in filteredUserPost"
                 :key="postimage.id">
-                    <img class="w-72 h-72"
+                    <img class="w-80 h-80"
                     :src="`${postimage.imageURL}`">
                 </div>
             </div>

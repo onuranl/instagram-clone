@@ -24,7 +24,7 @@
                             </div>
                             <!--formsection-->
 
-                            <form class="w-full h-36 flex justify-center mt-3" @submit.prevent="register">
+                            <form class="w-full h-36 flex justify-center mt-3 mb-3" @submit.prevent="register">
                                 <fieldset class="w-9/12 p-2 space-y-2">
 
                                     <div class="bg-white w-full h-8 border-b-2 border-fuchsia-600 ">
@@ -37,8 +37,9 @@
                                     </div>
 
                                     <div class="bg-white w-full h-8 rounded-lg bg-blue-500 border-b-2 border-fuchsia-600">
-                                        <button  class="w-full h-full" type="submit"> <p class="text-white">Kaydol</p> </button>
+                                        <button :disabled="isRegisted"  class="w-full h-full" type="submit"> <p class="text-white">Kaydol</p> </button>
                                     </div>
+                                    <p class="text-xs text-red-500" > *Enter numbers and alphabets only. </p>
                                 </fieldset>
                             </form>
                             <div class="bg-red-100 text-red-700 px-4 py-3 relative flex justify-center" role="alert"
@@ -76,7 +77,7 @@
 <script>
 import { mapState } from "vuex"
 
-const API_URL = 'http://localhost:1234/register'
+const API_URL = 'https://instagram-clone-onuranl.herokuapp.com/register'
 
 export default {
   data() {

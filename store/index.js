@@ -51,7 +51,7 @@ export const actions = {
 
 
       try {
-        await fetch('http://localhost:1234/register')
+        await fetch('https://instagram-clone-onuranl.herokuapp.com/register')
             .then(res => res.json())
             .then(data => {
                 commit("updateUserData", data)
@@ -67,7 +67,7 @@ export const actions = {
         if (state.postData.length) return;
 
         try {
-            await fetch('http://localhost:1234/posts')
+            await fetch('https://instagram-clone-onuranl.herokuapp.com/posts')
                 .then(res => res.json())
                 .then(data => {
                     commit("updatePostData", data)
