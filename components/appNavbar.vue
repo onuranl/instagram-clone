@@ -79,7 +79,7 @@
             <!--searchingresults-->
             <div class="w-full absolute flex justify-center right-2"
             v-if="isSearching">
-                <div class="w-96 h-96 bg-white shadow-2xl rounded-md">
+                <div class="w-96 h-84 bg-white shadow-2xl rounded-md">
                     <div class="h-5 w-full flex justify-between p-2">
                         <div>
                             <p>Arama Sonuçları</p>
@@ -131,12 +131,12 @@
                             </div>
                         </button>
                     </div>
-                    <div class="h-72 mt-4">
+                    <div class="h-72 mt-4 overflow-auto">
                         <div class="h-12 flex items-center"
                         v-for="user in filteredUser"
                         :key="user.name">
-                            <div class="w-20 flex justify-center ">
-                                <button class="" type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
+                            <div class="w-20 flex justify-center">
+                                <button type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">
                                     <span class="sr-only">Open user page</span>
                                     <!--user-avatar-->
                                     <img :alt="`${user.username}'in profil resmi`" class="w-10 h-10 rounded-full" crossorigin="anonymous" data-testid="user-avatar" draggable="false"
