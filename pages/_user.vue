@@ -1,6 +1,5 @@
 <template>
     <div>
-        <app-navbar :filteredUserInfo="filteredUserInfo" />
         <app-user-page />
     </div>
 </template>
@@ -10,16 +9,16 @@ import { mapState } from "vuex";
 
 export default {
     name: "user",
-    computed: {
-        ...mapState([
-            'currentUser',
-            'userData'
-        ]),
-        filteredUserInfo() {
-            return this.userData.filter(data => {
-                return data.username.toLowerCase().includes(this.currentUser.username.toLowerCase())
-            })
-        },
-    }
+    // computed: {
+    //     ...mapState([
+    //         'currentUser',
+    //         'userData'
+    //     ]),
+    //     filteredUserInfo() {
+    //         return this.userData.filter(data => {
+    //             return data.username.toLowerCase().includes(this.currentUser.username.toLowerCase())
+    //         })
+    //     },
+    // }
 }
 </script>

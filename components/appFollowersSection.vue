@@ -16,7 +16,7 @@
             <div class="w-full h-72 overflow-auto">
                 <div>
                     <div class="h-12 flex items-center"
-                    v-for="users in filteredUserInfo[0].followers"
+                    v-for="users in filteredUserInfo.followers"
                     :key="users.name">
                         <div class="w-20 flex justify-center ">
                             <button class="" type="button" id="user-menu" aria-expanded="false" aria-haspopup="true">

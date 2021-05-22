@@ -1,5 +1,6 @@
 <template>
     <div>
+        <app-navbar />
         <div class="w-full flex justify-center" v-if="isUser">
             <section class="w-8/12">
                 <!--user-->
@@ -45,16 +46,21 @@ export default {
             'checkFolloweds',
             'checkFollowers'
         ]),
-        filteredUserPost() {
-            const userPosts = this.postData.filter(data => {
-                return data.username.toLowerCase().includes(this.username.toLowerCase())
-            })
-            return userPosts.reverse()
-        },
         filteredUserInfo() {
-            return this.userData.filter(data => {
+            var userInfo = this.userData.filter(data => {
                 return data.username.toLowerCase().includes(this.username.toLowerCase())
             })
+            userInfo = userInfo.reverse()
+            return userInfo[0]
+        },
+        filteredUserPost() {
+            var result = []
+            for (let i = 0; i < this.postData.length; i++) {
+                if (this.postData[i].username == this.username) {
+                    result.push(this.postData[i])
+                }
+            }
+            return result.reverse()
         },
         isUser() {
             let result;

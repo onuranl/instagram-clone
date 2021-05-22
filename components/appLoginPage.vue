@@ -89,6 +89,7 @@ export default {
                 window.localStorage.setItem("_id", this.currentUser._id)
                 window.localStorage.setItem("username", this.currentUser.username)
                 window.localStorage.setItem("password", this.currentUser.password)
+                window.localStorage.setItem("imageURL", this.currentUser.imageURL)
             }
             if(!this.isLogin) {
                 this.alert = true

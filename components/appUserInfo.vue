@@ -46,15 +46,13 @@
             </div>
         </div>
         <!--bottom side-->
-        <div class="w-full h-12 mt-2"
-        v-for="userInfo in filteredUserInfo"
-        :key="userInfo.id">
+        <div class="w-full h-12 mt-2">
             <!--postscount-->
             <div class="flex space-x-6"
             for="userInfo">
                 <p>0 post</p>
-                <button @click="checkFollowers" >  {{userInfo.followers.length}} followers </button>
-                <button @click="checkFolloweds" > {{userInfo.following.length}} following </button>
+                <button @click="checkFollowers" >  {{filteredUserInfo.followers.length}} followers </button>
+                <button @click="checkFolloweds" > {{filteredUserInfo.following.length}} following </button>
             </div>
         </div>
     </div>

@@ -5,7 +5,8 @@ export const state = () => ({
         {
             _id : "",
             username : "",
-            password : ""
+            password : "",
+            imageURL : ""
         }
     ],
     isLogin : false,
@@ -84,7 +85,8 @@ export const actions = {
             {
                 _id : "",
                 username: "",
-                password : ""
+                password : "",
+                imageURL : ""
             }
         ]
 
@@ -92,6 +94,7 @@ export const actions = {
             currentUser[0]._id = window.localStorage.getItem("_id")
             currentUser[0].username = window.localStorage.getItem("username")
             currentUser[0].password = window.localStorage.getItem("password")
+            currentUser[0].imageURL = window.localStorage.getItem("imageURL")
 
             commit("updateCurrentUser",currentUser[0])
 

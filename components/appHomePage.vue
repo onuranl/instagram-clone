@@ -1,6 +1,6 @@
 <template>
     <div>
-        <app-navbar :filteredUserInfo="filteredUserInfo" />
+        <app-navbar/>
         <main class="w-full flex justify-center">
             <section class="w-8/12 flex justify-center m-2">
                 <!--left side-->
@@ -10,7 +10,7 @@
                 </div>
                 <!--right side-->
                 <div class="h-5/6 w-2/5 mt-6 ml-2  ">
-                    <app-user-switch :filteredUserInfo="filteredUserInfo" />
+                    <app-user-switch />
                     <app-suggestion-section />
                     <app-footer />
                 </div>
@@ -31,9 +31,11 @@ export default {
             'postData'
         ]),
         filteredUserInfo() {
-            return this.userData.filter(data => {
+            var result
+            result = this.userData.filter(data => {
                 return data.username.toLowerCase().includes(this.currentUser.username.toLowerCase())
             })
+            return result.reverse()
         },
         filteredPosts() {
             var result = []

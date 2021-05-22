@@ -95,7 +95,7 @@
                     <section class="h-6">
                         <div class="flex">
                             <button class="ml-4">
-                                <p class="text-sm">onur123</p>
+                                <p class="text-sm">{{posts.username}}</p>
                             </button>
                             <p class="text-sm ml-3"> {{posts.description}} </p>
                         </div>
